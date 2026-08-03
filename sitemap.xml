@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://velora.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://velora.com/privacy.html</loc><changefreq>weekly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://velora.com/tools/color-converter.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://velora.com/tools/contrast-checker.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://velora.com/tools/palette-generator.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://velora.com/tools/gradient-generator.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://velora.com/tools/shades-tints.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://velora.com/tools/named-colors.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://velora.com/tools/image-palette-extractor.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://velora.com/tools/color-blindness-simulator.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+</urlset>
