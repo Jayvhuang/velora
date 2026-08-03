@@ -1,0 +1,28 @@
+# Velora
+
+> Velora is a free, private, all-in-one color toolkit. It converts colors between HEX/RGB/HSL/HSV, checks WCAG contrast ratios, generates color-theory palettes, builds CSS gradients, shows shades and tints, searches the CSS named-color library, extracts dominant colors from uploaded images, and simulates color blindness. Every calculation runs 100% in the visitor's browser — no account, no upload, no server processing of user colors or images.
+
+## Tools
+
+- Color Converter (https://velora.com/#tool-converter): convert any color between HEX, RGB, HSL, and HSV.
+- Contrast Checker (https://velora.com/#tool-contrast): check text/background color pairs against WCAG 2.1 AA and AAA thresholds.
+- Palette Generator (https://velora.com/#tool-palette): build complementary, analogous, triadic, tetradic, and monochromatic palettes from one base color.
+- Gradient Generator (https://velora.com/#tool-gradient): blend two colors into linear or radial CSS gradients with copyable code.
+- Shades & Tints (https://velora.com/#tool-shades): preview a color lightened toward white (tints) and darkened toward black (shades).
+- Named Colors (https://velora.com/#tool-named): searchable CSS named-color reference with one-click HEX copy.
+- Image Palette Extractor (https://velora.com/#tool-image): extract dominant colors from an uploaded image, processed locally in the browser.
+- Color Blindness Simulator (https://velora.com/#tool-blind): educational approximation of how a color appears under protanopia, deuteranopia, and tritanopia.
+
+## Languages
+
+Velora is available in English and 中文 (Chinese) via a one-click toggle in the header.
+
+## Policies
+
+- Privacy Policy: https://velora.com/privacy.html
+- Advertising: the site may display Google AdSense ads; AdSense may use cookies for ad personalization.
+- Affiliate: Velora participates in the Amazon Associates program and may earn from qualifying purchases.
+
+## Notes
+
+Color values are computed with standard formulas (sRGB → HSL/HSV conversions, WCAG relative-luminance contrast). The color blindness simulator is an educational approximation and is not clinically accurate. Velora is an educational toolkit and is not a substitute for professional design or accessibility-audit software.
