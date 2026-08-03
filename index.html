@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Velora — Free Color Tools: Converter, Palette, Contrast, Gradient (EN / 中文)</title>
+<meta name="description" content="Velora is a free, private, all-in-one color toolkit. Convert HEX/RGB/HSL/HSV, check WCAG contrast, generate palettes, build gradients, extract colors from images, and simulate color blindness. No signup, works in your browser. 免费的配色工具：颜色转换、对比度检查、调色板、渐变、图片取色、色盲模拟，支持中英切换。" />
+<meta name="keywords" content="color converter, hex to rgb, hsl converter, contrast checker, wcag, color palette generator, gradient generator, color blindness simulator, image color extractor, 颜色转换, 对比度检查, 调色板, 渐变生成器, 色盲模拟, 图片取色" />
+<link rel="canonical" href="https://velora.com/" />
+<link rel="alternate" hreflang="en" href="https://velora.com/" />
+<link rel="alternate" hreflang="zh" href="https://velora.com/?lang=zh" />
+<link rel="alternate" hreflang="x-default" href="https://velora.com/" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<meta name="theme-color" content="#6d5efc" />
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Velora — Free Color Tools (EN / 中文)" />
+<meta property="og:description" content="Convert colors, check contrast, generate palettes, build gradients, extract colors from images, and simulate color blindness. 100% in your browser." />
+<meta property="og:url" content="https://velora.com/" />
+<meta property="og:image" content="https://velora.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Velora — Free Color Tools (EN / 中文)" />
+<meta name="twitter:description" content="Free, private color toolkit: converter, contrast, palettes, gradients, image extractor, color blindness simulator." />
+<meta name="twitter:image" content="https://velora.com/og-image.png" />
+<meta name="dateModified" content="2026-07-12" />
+
+<!-- Structured data: WebSite + Organization + ItemList + FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Velora",
+  "url": "https://velora.com/",
+  "description": "A free, private, all-in-one color toolkit: converter, contrast checker, palette generator, gradient generator, shades & tints, named colors, image palette extractor, and color blindness simulator.",
+  "inLanguage": ["en", "zh"],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://velora.com/?q={query}",
+    "query-input": "required name=query"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Velora Color Tools",
+  "numberOfItems": 8,
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Color Converter","url":"https://velora.com/#tool-converter"},
+    {"@type":"ListItem","position":2,"name":"Contrast Checker","url":"https://velora.com/#tool-contrast"},
+    {"@type":"ListItem","position":3,"name":"Palette Generator","url":"https://velora.com/#tool-palette"},
+    {"@type":"ListItem","position":4,"name":"Gradient Generator","url":"https://velora.com/#tool-gradient"},
+    {"@type":"ListItem","position":5,"name":"Shades & Tints","url":"https://velora.com/#tool-shades"},
+    {"@type":"ListItem","position":6,"name":"Named Colors","url":"https://velora.com/#tool-named"},
+    {"@type":"ListItem","position":7,"name":"Image Palette Extractor","url":"https://velora.com/#tool-image"},
+    {"@type":"ListItem","position":8,"name":"Color Blindness Simulator","url":"https://velora.com/#tool-blind"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Velora",
+  "url": "https://velora.com/",
+  "logo": "https://velora.com/favicon.svg",
+  "description": "A free, private, all-in-one color toolkit that runs entirely in your browser.",
+  "sameAs": []
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Is Velora free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every tool is free and works without an account. Nothing is uploaded — all math happens in your browser."}},
+    {"@type":"Question","name":"Do you store my colors or images?","acceptedAnswer":{"@type":"Answer","text":"No. Your colors and images never leave your device. Image analysis runs entirely on your machine."}},
+    {"@type":"Question","name":"Which formats does the converter support?","acceptedAnswer":{"@type":"Answer","text":"HEX, RGB, HSL, and HSV. Type or pick a color and the other formats update instantly."}},
+    {"@type":"Question","name":"How accurate is the contrast checker?","acceptedAnswer":{"@type":"Answer","text":"It uses the official WCAG 2.1 relative-luminance formula, the same method referenced in accessibility guidelines."}},
+    {"@type":"Question","name":"Does the color blindness simulator show real vision?","acceptedAnswer":{"@type":"Answer","text":"No. It is an educational approximation based on a common simulation matrix — not a clinically accurate view of any person's vision."}},
+    {"@type":"Question","name":"Is there a Chinese version?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the 中文 button in the top-right to switch the whole interface between English and Chinese."}}
+  ]
+}
+</script>
+
+<style>
+:root{
+  --bg:#ffffff; --bg2:#f5f6fc; --card:#ffffff; --text:#1a1c2e; --muted:#6b7280;
+  --border:#e7e9f3; --chip:#f1f2fb; --accent:#6d5efc; --accent-soft:#efeaff;
+  --ok:#1f9d57; --bad:#d6455d; --shadow:0 8px 30px rgba(30,30,60,.07);
+}
+[data-theme="dark"]{
+  --bg:#0e0f1a; --bg2:#121426; --card:#171a2e; --text:#eef0ff; --muted:#9aa0b8;
+  --border:#272b46; --chip:#1d2138; --accent:#8b7dff; --accent-soft:#221f3d;
+  --ok:#43d98a; --bad:#ff6b82; --shadow:0 8px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent); text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1160px; margin:0 auto; padding:0 18px}
+.brand-grad{background:linear-gradient(90deg,#ff5e62,#ff9966,#f9d423,#56d364,#4facfe,#a16bff); -webkit-background-clip:text; background-clip:text; color:transparent}
+header{
+  position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:saturate(160%) blur(10px); border-bottom:1px solid var(--border);
+}
+.bar{display:flex; align-items:center; gap:12px; padding:12px 0}
+.logo{font-weight:800; font-size:22px; letter-spacing:-.5px; display:flex; align-items:center; gap:9px}
+.logo .dot{width:18px;height:18px;border-radius:6px;background:linear-gradient(135deg,#ff5e62,#4facfe,#a16bff)}
+.spacer{flex:1}
+.btn{
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  padding:8px 12px; border-radius:10px; cursor:pointer; font-size:14px; font-weight:600;
+  transition:.15s; white-space:nowrap;
+}
+.btn:hover{border-color:var(--accent); color:var(--accent)}
+.btn.primary{background:var(--accent); color:#fff; border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.05); color:#fff}
+.toolbar{
+  display:grid; gap:8px; padding:0 0 14px;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+}
+@media (max-width:900px){ .toolbar{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (max-width:540px){ .toolbar{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.tab{
+  border:1px solid var(--border); background:var(--chip); color:var(--muted);
+  padding:9px 8px; border-radius:10px; cursor:pointer; font-size:13px; font-weight:600;
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  min-height:40px; line-height:1.25; transition:.15s;
+}
+.tab:hover{border-color:var(--accent); color:var(--accent)}
+.tab.active{background:var(--accent); color:#fff; border-color:var(--accent)}
+.hero{padding:44px 0 18px; text-align:center}
+.hero h1{font-size:clamp(28px,5vw,46px); margin:0 0 12px; font-weight:850; letter-spacing:-1px}
+.hero p{font-size:18px; color:var(--muted); max-width:620px; margin:0 auto 22px}
+.hero .cta{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.card{background:var(--card); border:1px solid var(--border); border-radius:18px; padding:22px; box-shadow:var(--shadow)}
+.tool{margin:26px 0; scroll-margin-top:170px}
+.tool.hidden{display:none}
+.tool h2{display:flex; align-items:center; gap:10px; font-size:22px; margin:0 0 4px}
+.tool .sub{color:var(--muted); margin:0 0 18px; font-size:14px}
+.row{display:flex; gap:14px; flex-wrap:wrap; align-items:flex-end}
+.field{display:flex; flex-direction:column; gap:6px; min-width:160px}
+.field label{font-size:13px; font-weight:600; color:var(--muted)}
+input[type=text], input[type=number], select{
+  width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px;
+  background:var(--bg2); color:var(--text); font-size:15px; font-family:inherit;
+}
+input[type=color]{width:54px;height:44px;border:1px solid var(--border);border-radius:10px;background:var(--bg2);padding:4px;cursor:pointer}
+.swatches{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+.swatch{width:84px; height:84px; border-radius:12px; border:1px solid var(--border); position:relative; cursor:pointer; overflow:hidden}
+.swatch .lab{position:absolute; left:0; right:0; bottom:0; font-size:10px; text-align:center; padding:3px 2px; background:rgba(0,0,0,.42); color:#fff; font-family:ui-monospace,monospace}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin-top:14px}
+.fmt{border:1px solid var(--border); border-radius:12px; padding:12px; background:var(--bg2)}
+.fmt .k{font-size:12px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.4px}
+.fmt .v{font-size:18px; font-weight:700; font-family:ui-monospace,monospace; display:flex; justify-content:space-between; align-items:center; gap:8px}
+.copy{border:none; background:transparent; color:var(--muted); cursor:pointer; font-size:13px; padding:2px 6px; border-radius:6px}
+.copy:hover{color:var(--accent); background:var(--accent-soft)}
+.bigswatch{height:90px; border-radius:14px; border:1px solid var(--border); margin-top:14px}
+.badges{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+.badge{padding:8px 12px; border-radius:10px; font-size:13px; font-weight:700; border:1px solid var(--border)}
+.badge.ok{background:color-mix(in srgb,var(--ok) 14%,transparent); color:var(--ok); border-color:color-mix(in srgb,var(--ok) 40%,transparent)}
+.badge.bad{background:color-mix(in srgb,var(--bad) 14%,transparent); color:var(--bad); border-color:color-mix(in srgb,var(--bad) 40%,transparent)}
+.preview{margin-top:14px; padding:18px; border-radius:12px; font-weight:800; font-size:20px}
+.section-t{padding:10px 0 4px; font-weight:800; font-size:15px; color:var(--text)}
+.note{font-size:13px; color:var(--muted); margin-top:10px}
+.gradient-preview{height:120px; border-radius:14px; border:1px solid var(--border); margin-top:14px}
+code.block{display:block; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:12px; font-family:ui-monospace,monospace; font-size:13px; margin-top:12px; word-break:break-all}
+.palette-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(70px,1fr)); gap:8px; margin-top:6px}
+.palette-grid .swatch{width:100%; height:64px}
+.named-search{margin-bottom:14px}
+.named-list{display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:10px; max-height:420px; overflow:auto}
+.named{display:flex; align-items:center; gap:8px; border:1px solid var(--border); border-radius:10px; padding:8px; cursor:pointer; background:var(--bg2)}
+.named:hover{border-color:var(--accent)}
+.named .s{width:26px;height:26px;border-radius:7px;border:1px solid var(--border);flex:0 0 auto}
+.named .t{font-size:12px; line-height:1.2}
+.named .t b{display:block; font-size:12px}
+.named .t span{color:var(--muted); font-family:ui-monospace,monospace; font-size:11px}
+#imgPreview{max-width:100%; max-height:220px; border-radius:12px; border:1px solid var(--border); display:none; margin-top:12px}
+.faq{margin:30px 0}
+.faq details{border:1px solid var(--border); border-radius:12px; padding:4px 16px; margin-bottom:10px; background:var(--card)}
+.faq summary{cursor:pointer; font-weight:700; padding:12px 0; list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+"; color:var(--accent); font-weight:900; margin-right:10px}
+.faq details[open] summary::before{content:"−"}
+.faq p{color:var(--muted); margin:0 0 14px}
+.affiliate{margin:30px 0}
+.aff-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; margin-top:12px}
+.aff-card{border:1px solid var(--border); border-radius:14px; padding:16px; background:var(--bg2)}
+.aff-card .t{font-weight:700; margin-bottom:6px}
+.aff-card .d{font-size:13px; color:var(--muted); margin-bottom:10px}
+.aff-card a{font-size:13px; font-weight:700}
+.discl{font-size:12px; color:var(--muted); margin-top:10px}
+.ad-wrap{margin:26px 0; text-align:center}
+.ad-label{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px}
+.ad-slot{display:block; min-height:90px; border:1px dashed var(--border); border-radius:12px; background:var(--bg2); width:100%}
+footer{border-top:1px solid var(--border); padding:28px 0 50px; margin-top:30px; color:var(--muted); font-size:13px}
+footer .links{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px}
+footer .disc{font-size:12px; max-width:680px}
+.kbd{font-family:ui-monospace,monospace; background:var(--chip); padding:1px 6px; border-radius:6px; font-size:12px}
+.toast{position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px); background:var(--text); color:var(--bg); padding:10px 18px; border-radius:999px; font-weight:700; font-size:14px; opacity:0; pointer-events:none; transition:.25s; z-index:99}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+@media(max-width:560px){ .hero p{font-size:16px} .field{min-width:100%} }
+</style>
+  
+
+<!-- Google AdSense — Auto Ads mode (PLACEHOLDER, inert).
+     To activate: (1) replace ca-pub-XXXXXXXXXXXXXX with your real publisher ID,
+     (2) remove the comment markers around the <script> line below. No other code changes needed. -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+</head>
+<body data-theme="light">
+
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <div class="logo"><span class="dot"></span><span class="brand-grad">Velora</span></div>
+      <div class="spacer"></div>
+      <button class="btn" id="langBtn" onclick="toggleLang()">中文</button>
+      <button class="btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
+    </div>
+    <nav class="toolbar" id="toolbar"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1 class="brand-grad" data-i18n="hero_title">Color tools that just work</h1>
+    <p data-i18n="hero_sub">A free, private toolkit to convert, compare, and create colors — right in your browser. No signup, no upload, no nonsense.</p>
+    <div class="cta">
+      <button class="btn primary" onclick="showTool('converter')" data-i18n="hero_cta1">Open Color Converter</button>
+    </div>
+  </section>
+
+
+  <!-- ============ TOOL: CONVERTER ============ -->
+  <section class="tool card" id="tool-converter">
+    <h2>🎨 <span data-i18n="t_converter">Color Converter</span></h2>
+    <p class="sub" data-i18n="t_converter_sub">Convert any color between HEX, RGB, HSL, and HSV. Pick a color or type a value.</p>
+    <div class="row">
+      <div class="field" style="min-width:120px">
+        <label data-i18n="pick">Pick</label>
+        <input type="color" id="convColor" value="#6d5efc" oninput="convFromColor()" />
+      </div>
+      <div class="field" style="flex:1; min-width:200px">
+        <label>HEX</label>
+        <input type="text" id="convHex" value="#6d5efc" oninput="convFromHex()" />
+      </div>
+    </div>
+    <div class="bigswatch" id="convSwatch"></div>
+    <div class="grid">
+      <div class="fmt"><div class="k">HEX</div><div class="v"><span id="convHexOut">#6d5efc</span><button class="copy" data-i18n="copy" onclick="copy(document.getElementById('convHexOut').textContent)">Copy</button></div></div>
+      <div class="fmt"><div class="k">RGB</div><div class="v"><span id="convRgbOut">rgb(109, 94, 252)</span><button class="copy" data-i18n="copy" onclick="copy(document.getElementById('convRgbOut').textContent)">Copy</button></div></div>
+      <div class="fmt"><div class="k">HSL</div><div class="v"><span id="convHslOut">hsl(245, 96%, 68%)</span><button class="copy" data-i18n="copy" onclick="copy(document.getElementById('convHslOut').textContent)">Copy</button></div></div>
+      <div class="fmt"><div class="k">HSV</div><div class="v"><span id="convHsvOut">hsv(245, 63%, 99%)</span><button class="copy" data-i18n="copy" onclick="copy(document.getElementById('convHsvOut').textContent)">Copy</button></div></div>
+    </div>
+  </section>
+
+  <!-- ============ TOOL: CONTRAST ============ -->
+  <section class="tool card hidden" id="tool-contrast">
+    <h2>◐ <span data-i18n="t_contrast">Contrast Checker</span></h2>
+    <p class="sub" data-i18n="t_contrast_sub">Check if text and background colors meet WCAG 2.1 accessibility standards.</p>
+    <div class="row">
+      <div class="field" style="min-width:160px"><label data-i18n="text_color">Text color</label><input type="color" id="conFg" value="#111111" oninput="checkContrast()" /><input type="text" id="conFgHex" value="#111111" oninput="checkContrastHex('fg')" /></div>
+      <div class="field" style="min-width:160px"><label data-i18n="bg_color">Background color</label><input type="color" id="conBg" value="#ffffff" oninput="checkContrast()" /><input type="text" id="conBgHex" value="#ffffff" oninput="checkContrastHex('bg')" /></div>
+    </div>
+    <div class="badges" id="conBadges"></div>
+    <div class="preview" id="conPreview">The quick brown fox jumps over the lazy dog.</div>
+    <div class="note" id="conRatioNote"></div>
+  </section>
+
+  <!-- ============ TOOL: PALETTE ============ -->
+  <section class="tool card hidden" id="tool-palette">
+    <h2>🌈 <span data-i18n="t_palette">Palette Generator</span></h2>
+    <p class="sub" data-i18n="t_palette_sub">Build a harmonious palette from one base color using color-theory rules.</p>
+    <div class="row">
+      <div class="field" style="min-width:120px"><label data-i18n="base_color">Base color</label><input type="color" id="palBase" value="#6d5efc" oninput="genPalette()" /><input type="text" id="palBaseHex" value="#6d5efc" oninput="genPaletteHex()" /></div>
+    </div>
+    <div class="section-t" data-i18n="complementary">Complementary</div>
+    <div class="palette-grid" id="palComp"></div>
+    <div class="section-t" data-i18n="analogous">Analogous</div>
+    <div class="palette-grid" id="palAna"></div>
+    <div class="section-t" data-i18n="triadic">Triadic</div>
+    <div class="palette-grid" id="palTri"></div>
+    <div class="section-t" data-i18n="tetradic">Tetradic</div>
+    <div class="palette-grid" id="palTet"></div>
+    <div class="section-t" data-i18n="monochromatic">Monochromatic</div>
+    <div class="palette-grid" id="palMono"></div>
+  </section>
+
+  <!-- ============ TOOL: GRADIENT ============ -->
+  <section class="tool card hidden" id="tool-gradient">
+    <h2>🌅 <span data-i18n="t_gradient">Gradient Generator</span></h2>
+    <p class="sub" data-i18n="t_gradient_sub">Blend two colors into a CSS gradient and copy the code.</p>
+    <div class="row">
+      <div class="field" style="min-width:140px"><label data-i18n="color_1">Color 1</label><input type="color" id="grad1" value="#6d5efc" oninput="genGradient()" /><input type="text" id="grad1Hex" value="#6d5efc" oninput="genGradientHex(1)" /></div>
+      <div class="field" style="min-width:140px"><label data-i18n="color_2">Color 2</label><input type="color" id="grad2" value="#00c2c7" oninput="genGradient()" /><input type="text" id="grad2Hex" value="#00c2c7" oninput="genGradientHex(2)" /></div>
+      <div class="field" style="min-width:130px"><label data-i18n="type">Type</label><select id="gradType" onchange="genGradient()"><option value="linear" data-i18n="linear">Linear</option><option value="radial" data-i18n="radial">Radial</option></select></div>
+      <div class="field" style="min-width:130px"><label>Angle: <span id="gradAngleVal">90</span>°</label><input type="range" id="gradAngle" min="0" max="360" value="90" oninput="genGradient()" /></div>
+    </div>
+    <div class="gradient-preview" id="gradPreview"></div>
+    <code class="block" id="gradCode">background: linear-gradient(90deg, #6d5efc, #00c2c7);</code>
+    <button class="btn" data-i18n="copy_css" style="margin-top:10px" onclick="copy(document.getElementById('gradCode').textContent)">Copy CSS</button>
+  </section>
+
+  <!-- ============ TOOL: SHADES ============ -->
+  <section class="tool card hidden" id="tool-shades">
+    <h2>▦ <span data-i18n="t_shades">Shades &amp; Tints</span></h2>
+    <p class="sub" data-i18n="t_shades_sub">See how a color looks lighter (tints) and darker (shades).</p>
+    <div class="row">
+      <div class="field" style="min-width:120px"><label data-i18n="base_color">Base color</label><input type="color" id="shBase" value="#6d5efc" oninput="genShades()" /><input type="text" id="shBaseHex" value="#6d5efc" oninput="genShadesHex()" /></div>
+    </div>
+    <div class="section-t" data-i18n="tints">Tints (→ white)</div>
+    <div class="palette-grid" id="shTints"></div>
+    <div class="section-t" data-i18n="shades">Shades (→ black)</div>
+    <div class="palette-grid" id="shShades"></div>
+  </section>
+
+  <!-- ============ TOOL: NAMED ============ -->
+  <section class="tool card hidden" id="tool-named">
+    <h2>🏷️ <span data-i18n="t_named">Named Colors</span></h2>
+    <p class="sub" data-i18n="t_named_sub">Search the CSS named-color library. Click any swatch to copy its HEX.</p>
+    <div class="named-search"><input type="text" id="namedSearch" placeholder="Search a color name… (e.g. tomato, navy)" oninput="renderNamed()" /></div>
+    <div class="named-list" id="namedList"></div>
+  </section>
+
+  <!-- ============ TOOL: IMAGE ============ -->
+  <section class="tool card hidden" id="tool-image">
+    <h2>🖼️ <span data-i18n="t_image">Image Palette Extractor</span></h2>
+    <p class="sub" data-i18n="t_image_sub">Upload an image and Velora extracts its dominant colors — 100% in your browser, never uploaded.</p>
+    <div class="row">
+      <div class="field" style="min-width:220px"><label data-i18n="upload_image">Upload image</label><input type="file" id="imgFile" accept="image/*" onchange="extractPalette()" /></div>
+    </div>
+    <img id="imgPreview" alt="preview" />
+    <div class="section-t" data-i18n="dominant_colors">Dominant colors</div>
+    <div class="palette-grid" id="imgPalette"></div>
+    <div class="note" data-i18n="img_note">Approximate dominant colors from a downscaled copy of your image. Private by design.</div>
+  </section>
+
+  <!-- ============ TOOL: BLIND ============ -->
+  <section class="tool card hidden" id="tool-blind">
+    <h2>👁️ <span data-i18n="t_blind">Color Blindness Simulator</span></h2>
+    <p class="sub" data-i18n="t_blind_sub">See how a color appears under common types of color vision deficiency.</p>
+    <div class="row">
+      <div class="field" style="min-width:120px"><label data-i18n="base_color">Base color</label><input type="color" id="blindBase" value="#6d5efc" oninput="simBlind()" /><input type="text" id="blindBaseHex" value="#6d5efc" oninput="simBlindHex()" /></div>
+      <div class="field" style="min-width:180px"><label data-i18n="type">Type</label><select id="blindType" onchange="simBlind()"><option value="protanopia" data-i18n="protanopia">Protanopia</option><option value="deuteranopia" data-i18n="deuteranopia">Deuteranopia</option><option value="tritanopia" data-i18n="tritanopia">Tritanopia</option></select></div>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <div class="swatches"><div class="swatch"><div class="lab" id="blindOrigLab">#6d5efc</div><div id="blindOrig" style="width:100%;height:100%;background:#6d5efc"></div></div><div class="swatch"><div class="lab" id="blindSimLab">#6d5efc</div><div id="blindSim" style="width:100%;height:100%;background:#6d5efc"></div></div></div>
+    </div>
+    <div class="note" data-i18n="blind_note">Educational approximation using a standard simulation matrix — not a clinically accurate representation of any individual's vision.</div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <h2 data-i18n="faq_title">Frequently asked questions</h2>
+    <div id="faqList"></div>
+  </section>
+
+  <!-- Affiliate -->
+  <section class="affiliate">
+    <h2 data-i18n="aff_title">Recommended for creators</h2>
+    <p class="sub" data-i18n="aff_sub">Hand-picked tools we think color lovers will enjoy. (Affiliate links)</p>
+    <div class="aff-grid" id="affGrid"></div>
+    <p class="discl" id="affDiscl"></p>
+  </section>
+
+
+  <footer>
+    <div class="links">
+      <a href="privacy.html" data-i18n="privacy">Privacy Policy</a>
+      <a href="tools/color-converter.html" data-i18n="t_converter">Color Converter</a>
+      <a href="tools/contrast-checker.html" data-i18n="t_contrast">Contrast Checker</a>
+      <a href="tools/palette-generator.html" data-i18n="t_palette">Palette Generator</a>
+      <a href="tools/gradient-generator.html" data-i18n="t_gradient">Gradient Generator</a>
+      <a href="tools/shades-tints.html" data-i18n="t_shades">Shades &amp; Tints</a>
+      <a href="tools/named-colors.html" data-i18n="t_named">Named Colors</a>
+      <a href="tools/image-palette-extractor.html" data-i18n="t_image">Image Palette</a>
+      <a href="tools/color-blindness-simulator.html" data-i18n="t_blind">Color Blindness</a>
+    </div>
+    <div class="disc" data-i18n="footer_disc">Velora is a free educational toolkit. All calculations run locally in your browser; we never upload your colors or images. Color values are computed by standard formulas and may differ slightly from other tools. Not a substitute for professional design or accessibility auditing software.</div>
+  </footer>
+</main>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+/* ===================== i18n ===================== */
+const T = {
+  en:{
+    hero_title:"Color tools that just work",
+    hero_sub:"A free, private toolkit to convert, compare, and create colors — right in your browser. No signup, no upload, no nonsense.",
+    hero_cta1:"Open Color Converter",
+    pick:"Pick", text_color:"Text color", bg_color:"Background color", base_color:"Base color", copy:"Copy", copy_css:"Copy CSS",
+    complementary:"Complementary", analogous:"Analogous", triadic:"Triadic", tetradic:"Tetradic", monochromatic:"Monochromatic",
+    color_1:"Color 1", color_2:"Color 2", type:"Type", linear:"Linear", radial:"Radial", tints:"Tints (→ white)", shades:"Shades (→ black)",
+    upload_image:"Upload image", dominant_colors:"Dominant colors", img_note:"Approximate dominant colors from a downscaled copy of your image. Private by design.",
+    protanopia:"Protanopia", deuteranopia:"Deuteranopia", tritanopia:"Tritanopia", blind_note:"Educational approximation using a standard simulation matrix — not a clinically accurate representation of any individual's vision.",
+    faq_title:"Frequently asked questions",
+    aff_title:"Recommended for creators", aff_sub:"Hand-picked tools we think color lovers will enjoy. (Affiliate links)",
+    privacy:"Privacy Policy", footer_disc:"Velora is a free educational toolkit. All calculations run locally in your browser; we never upload your colors or images. Color values are computed by standard formulas and may differ slightly from other tools. Not a substitute for professional design or accessibility auditing software.",
+    t_converter:"Color Converter", t_converter_sub:"Convert any color between HEX, RGB, HSL, and HSV. Pick a color or type a value.",
+    t_contrast:"Contrast Checker", t_contrast_sub:"Check if text and background colors meet WCAG 2.1 accessibility standards.",
+    t_palette:"Palette Generator", t_palette_sub:"Build a harmonious palette from one base color using color-theory rules.",
+    t_gradient:"Gradient Generator", t_gradient_sub:"Blend two colors into a CSS gradient and copy the code.",
+    t_shades:"Shades & Tints", t_shades_sub:"See how a color looks lighter (tints) and darker (shades).",
+    t_named:"Named Colors", t_named_sub:"Search the CSS named-color library. Click any swatch to copy its HEX.", named_placeholder:"Search a color name… (e.g. tomato, navy)",
+    t_image:"Image Palette Extractor", t_image_sub:"Upload an image and Velora extracts its dominant colors — 100% in your browser, never uploaded.",
+    t_blind:"Color Blindness Simulator", t_blind_sub:"See how a color appears under common types of color vision deficiency.",
+    ratio:"Contrast ratio", aa_normal:"AA Normal text", aa_large:"AA Large text", aaa_normal:"AAA Normal text", aaa_large:"AAA Large text", pass:"PASS", fail:"FAIL",
+    affDiscl:"As an Amazon Associate, Velora earns from qualifying purchases. This does not affect the price you pay.",
+    faqs:[
+      ["Is Velora free?","Yes. Every tool is free and works without an account. Nothing is uploaded — all math happens in your browser."],
+      ["Do you store my colors or images?","No. Your colors and images never leave your device. Image analysis runs entirely on your machine."],
+      ["Which formats does the converter support?","HEX, RGB, HSL, and HSV. Type or pick a color and the other formats update instantly."],
+      ["How accurate is the contrast checker?","It uses the official WCAG 2.1 relative-luminance formula, the same method referenced in accessibility guidelines."],
+      ["Does the color blindness simulator show real vision?","No. It is an educational approximation based on a common simulation matrix — not a clinically accurate view of any person's vision."],
+      ["Is there a Chinese version?","Yes. Use the 中文 button in the top-right to switch the whole interface between English and Chinese."]
+    ]
+  },
+  zh:{
+    hero_title:"好用的配色工具",
+    hero_sub:"免费、私密的配色工具箱，在浏览器里转换、对比、生成颜色。无需注册，不上传，不啰嗦。",
+    hero_cta1:"打开颜色转换器",
+    pick:"选择", text_color:"文字颜色", bg_color:"背景颜色", base_color:"基础颜色", copy:"复制", copy_css:"复制 CSS",
+    complementary:"互补色", analogous:"邻近色", triadic:"三等分色", tetradic:"四角色", monochromatic:"单色阶",
+    color_1:"颜色 1", color_2:"颜色 2", type:"类型", linear:"线性", radial:"径向", tints:"浅色（→ 白）", shades:"深色（→ 黑）",
+    upload_image:"上传图片", dominant_colors:"主要颜色", img_note:"基于图片缩放后的副本估算主要颜色，全程私密。",
+    protanopia:"红色盲", deuteranopia:"绿色盲", tritanopia:"蓝色盲", blind_note:"基于标准模拟矩阵的教育性近似，并非任何个人视觉的临床准确呈现。",
+    faq_title:"常见问题",
+    aff_title:"为创作者推荐", aff_sub:"我们为配色爱好者精选的工具。（附联盟链接）",
+    privacy:"隐私政策", footer_disc:"Velora 是免费的教科级工具箱。所有计算在你的浏览器本地完成，我们绝不上传你的颜色或图片。颜色数值由标准公式计算，可能与其他工具略有差异。不能替代专业的设计或无障碍审计软件。",
+    t_converter:"颜色转换器", t_converter_sub:"在 HEX、RGB、HSL、HSV 之间互相转换。选择或输入颜色即可。",
+    t_contrast:"对比度检查器", t_contrast_sub:"检查文字与背景颜色是否符合 WCAG 2.1 无障碍标准。",
+    t_palette:"调色板生成器", t_palette_sub:"用色彩理论规则，从一个基础色生成和谐配色。",
+    t_gradient:"渐变生成器", t_gradient_sub:"把两种颜色混合成 CSS 渐变，并复制代码。",
+    t_shades:"明暗色阶", t_shades_sub:"查看颜色变浅（浅色）与变深（深色）的效果。",
+    t_named:"颜色名称库", t_named_sub:"搜索 CSS 命名颜色库。点击任意色块复制其 HEX 值。", named_placeholder:"搜索颜色名称…（如 tomato、navy）",
+    t_image:"图片取色器", t_image_sub:"上传图片，Velora 提取其主要颜色——全程在浏览器内，绝不上传。",
+    t_blind:"色盲模拟器", t_blind_sub:"查看颜色在常见色觉缺陷下的呈现效果。",
+    ratio:"对比度", aa_normal:"AA 普通文字", aa_large:"AA 大号文字", aaa_normal:"AAA 普通文字", aaa_large:"AAA 大号文字", pass:"通过", fail:"不通过",
+    affDiscl:"作为亚马逊联盟成员，Velora 可从合格购买中获得佣金，不影响你的支付价格。",
+    faqs:[
+      ["Velora 免费吗？","免费。所有工具都免费使用，无需账号。数据不会上传——所有运算都在你的浏览器里完成。"],
+      ["你们会保存我的颜色或图片吗？","不会。你的颜色和图片永远不会离开你的设备。图片分析完全在本地进行。"],
+      ["转换器支持哪些格式？","HEX、RGB、HSL、HSV。选择或输入颜色，其他格式会即时更新。"],
+      ["对比度检查器有多准？","它使用 WCAG 2.1 官方相对亮度公式，与无障碍指南引用的方法一致。"],
+      ["色盲模拟器展示的是真实视觉吗？","不是。它是基于常见模拟矩阵的教育性近似，并非任何个人视觉的临床准确呈现。"],
+      ["有中文版吗？","有。点击右上角的「中文」按钮，即可在英文与中文之间切换整个界面。"]
+    ]
+  }
+};
+const TOOLS=[
+  {id:"converter", key:"t_converter", icon:"🎨"},
+  {id:"contrast", key:"t_contrast", icon:"◐"},
+  {id:"palette", key:"t_palette", icon:"🌈"},
+  {id:"gradient", key:"t_gradient", icon:"🌅"},
+  {id:"shades", key:"t_shades", icon:"▦"},
+  {id:"named", key:"t_named", icon:"🏷️"},
+  {id:"image", key:"t_image", icon:"🖼️"},
+  {id:"blind", key:"t_blind", icon:"👁️"}
+];
+let LANG = (location.search.match(/[?&]lang=(zh|en)/)||[])[1] || localStorage.getItem("velora_lang") || "en";
+let THEME = localStorage.getItem("velora_theme") || "light";
+
+/* ===================== Color math ===================== */
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+function hexToRgb(hex){
+  hex=(hex||"").trim().replace(/^#/,"");
+  if(/^[0-9a-fA-F]{3}$/.test(hex)) hex=hex.split("").map(c=>c+c).join("");
+  if(!/^[0-9a-fA-F]{6}$/.test(hex)) return null;
+  return {r:parseInt(hex.slice(0,2),16),g:parseInt(hex.slice(2,4),16),b:parseInt(hex.slice(4,6),16)};
+}
+function rgbToHex(r,g,b){
+  const h=n=>clamp(Math.round(n),0,255).toString(16).padStart(2,"0");
+  return "#"+h(r)+h(g)+h(b);
+}
+function rgbToHsl(r,g,b){
+  r/=255;g/=255;b/=255;
+  const max=Math.max(r,g,b),min=Math.min(r,g,b);
+  let h,s,l=(max+min)/2;
+  if(max===min){h=s=0;}
+  else{const d=max-min; s=l>0.5?d/(2-max-min):d/(max+min);
+    switch(max){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;case b:h=(r-g)/d+4;break;}
+    h/=6;}
+  return {h:Math.round(h*360),s:Math.round(s*100),l:Math.round(l*100)};
+}
+function hue2rgb(p,q,t){if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p;}
+function hslToRgb(h,s,l){h/=360;s/=100;l/=100;let r,g,b;if(s===0){r=g=b=l;}else{const q=l<0.5?l*(1+s):l+s-l*s;const p=2*l-q;r=hue2rgb(p,q,h+1/3);g=hue2rgb(p,q,h);b=hue2rgb(p,q,h-1/3);}return {r:Math.round(r*255),g:Math.round(g*255),b:Math.round(b*255)};}
+function hslToHex(h,s,l){const c=hslToRgb(h,s,l);return rgbToHex(c.r,c.g,c.b);}
+function rgbToHsv(r,g,b){r/=255;g/=255;b/=255;const max=Math.max(r,g,b),min=Math.min(r,g,b),d=max-min;let h=0;const v=max;const s=max===0?0:d/max;if(d!==0){switch(max){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;case b:h=(r-g)/d+4;break;}h/=6;}return {h:Math.round(h*360),s:Math.round(s*100),v:Math.round(v*100)};}
+function relLum(r,g,b){const f=c=>{c/=255;return c<=0.03928?c/12.92:Math.pow((c+0.055)/1.055,2.4);};return 0.2126*f(r)+0.7152*f(g)+0.0722*f(b);}
+function contrastRatio(c1,c2){const L1=relLum(c1.r,c1.g,c1.b),L2=relLum(c2.r,c2.g,c2.b);const hi=Math.max(L1,L2),lo=Math.min(L1,L2);return (hi+0.05)/(lo+0.05);}
+function mix(c1,c2,t){return {r:c1.r+(c2.r-c1.r)*t,g:c1.g+(c2.g-c1.g)*t,b:c1.b+(c2.b-c1.b)*t};}
+function harmony(hex){
+  const rgb=hexToRgb(hex); if(!rgb) return null;
+  const hsl=rgbToHsl(rgb.r,rgb.g,rgb.b);
+  const mk=(dh,dl=hsl.l,ds=hsl.s)=>hslToHex((hsl.h+dh+360)%360,ds,dl);
+  const mono=[]; for(let i=0;i<5;i++) mono.push(hslToHex(hsl.h,hsl.s,Math.round(30+i*12.5)));
+  return { base:hex, complementary:mk(180), analogous:[mk(-30),mk(30)], triadic:[mk(120),mk(240)], tetradic:[mk(90),mk(180),mk(270)], monochromatic:mono };
+}
+function blindness(hex,type){
+  const rgb=hexToRgb(hex); if(!rgb) return null;
+  const M={ protanopia:[0.567,0.433,0,0.558,0.442,0,0,0.242,0.758], deuteranopia:[0.625,0.375,0,0.700,0.300,0,0,0.300,0.700], tritanopia:[0.950,0.050,0,0,0.433,0.567,0,0.475,0.525] }[type];
+  if(!M) return null;
+  const r=rgb.r/255,g=rgb.g/255,b=rgb.b/255;
+  const nr=clamp(r*M[0]+g*M[1]+b*M[2],0,1), ng=clamp(r*M[3]+g*M[4]+b*M[5],0,1), nb=clamp(r*M[6]+g*M[7]+b*M[8],0,1);
+  return rgbToHex(Math.round(nr*255),Math.round(ng*255),Math.round(nb*255));
+}
+const NAMED=[
+["aliceblue","#F0F8FF"],["antiquewhite","#FAEBD7"],["aqua","#00FFFF"],["aquamarine","#7FFFD4"],["azure","#F0FFFF"],["beige","#F5F5DC"],["bisque","#FFE4C4"],["black","#000000"],["blanchedalmond","#FFEBCD"],["blue","#0000FF"],["blueviolet","#8A2BE2"],["brown","#A52A2A"],["burlywood","#DEB887"],["cadetblue","#5F9EA0"],["chartreuse","#7FFF00"],["chocolate","#D2691E"],["coral","#FF7F50"],["cornflowerblue","#6495ED"],["cornsilk","#FFF8DC"],["crimson","#DC143C"],["cyan","#00FFFF"],["darkblue","#00008B"],["darkcyan","#008B8B"],["darkgoldenrod","#B8860B"],["darkgray","#A9A9A9"],["darkgreen","#006400"],["darkkhaki","#BDB76B"],["darkmagenta","#8B008B"],["darkolivegreen","#556B2F"],["darkorange","#FF8C00"],["darkorchid","#9932CC"],["darkred","#8B0000"],["darksalmon","#E9967A"],["darkseagreen","#8FBC8F"],["darkslateblue","#483D8B"],["darkslategray","#2F4F4F"],["darkturquoise","#00CED1"],["darkviolet","#9400D3"],["deeppink","#FF1493"],["deepskyblue","#00BFFF"],["dimgray","#696969"],["dodgerblue","#1E90FF"],["firebrick","#B22222"],["floralwhite","#FFFAF0"],["forestgreen","#228B22"],["fuchsia","#FF00FF"],["gainsboro","#DCDCDC"],["ghostwhite","#F8F8FF"],["gold","#FFD700"],["goldenrod","#DAA520"],["gray","#808080"],["green","#008000"],["greenyellow","#ADFF2E"],["honeydew","#F0FFF0"],["hotpink","#FF69B4"],["indianred","#CD5C5C"],["indigo","#4B0082"],["ivory","#FFFFF0"],["khaki","#F0E68C"],["lavender","#E6E6FA"],["lavenderblush","#FFF0F5"],["lawngreen","#7CFC00"],["lemonchiffon","#FFFACD"],["lightblue","#ADD8E6"],["lightcoral","#F08080"],["lightcyan","#E0FFFF"],["lightgoldenrodyellow","#FAFAD2"],["lightgray","#D3D3D3"],["lightgreen","#90EE90"],["lightpink","#FFB6C1"],["lightsalmon","#FFA07A"],["lightseagreen","#20B2AA"],["lightskyblue","#87CEFA"],["lightslategray","#778899"],["lightsteelblue","#B0C4DE"],["lightyellow","#FFFFE0"],["lime","#00FF00"],["limegreen","#32CD32"],["linen","#FAF0E6"],["magenta","#FF00FF"],["maroon","#800000"],["mediumaquamarine","#66CDAA"],["mediumblue","#0000CD"],["mediumorchid","#BA55D3"],["mediumpurple","#9370DB"],["mediumseagreen","#3CB371"],["mediumslateblue","#7B68EE"],["mediumspringgreen","#00FA9A"],["mediumturquoise","#48D1CC"],["mediumvioletred","#C71585"],["midnightblue","#191970"],["mintcream","#F5FFFA"],["mistyrose","#FFE4E1"],["moccasin","#FFE4B5"],["navajowhite","#FFDEAD"],["navy","#000080"],["oldlace","#FDF5E6"],["olive","#808000"],["olivedrab","#6B8E23"],["orange","#FFA500"],["orangered","#FF4500"],["orchid","#DA70D6"],["palegoldenrod","#EEE8AA"],["palegreen","#98FB98"],["paleturquoise","#AFEEEE"],["palevioletred","#DB7093"],["papayawhip","#FFEFD5"],["peachpuff","#FFDAB9"],["peru","#CD853F"],["pink","#FFC0CB"],["plum","#DDA0DD"],["powderblue","#B0E0E6"],["purple","#800080"],["rebeccapurple","#663399"],["red","#FF0000"],["rosybrown","#BC8F8F"],["royalblue","#4169E1"],["saddlebrown","#8B4513"],["salmon","#FA8072"],["sandybrown","#F4A460"],["seagreen","#2E8B57"],["seashell","#FFF5EE"],["sienna","#A0522D"],["silver","#C0C0C0"],["skyblue","#87CEEB"],["slateblue","#6A5ACD"],["slategray","#708090"],["snow","#FFFAFA"],["springgreen","#00FF7F"],["steelblue","#4682B4"],["tan","#D2B48C"],["teal","#008080"],["thistle","#D8BFD8"],["tomato","#FF6347"],["turquoise","#40E0D0"],["violet","#EE82EE"],["wheat","#F5DEB0"],["white","#FFFFFF"],["whitesmoke","#F5F5F5"],["yellow","#FFFF00"],["yellowgreen","#9ACD32"]
+];
+const AFF=[
+  {en:["Color Design Books","Theory and practice for makers.","https://www.amazon.com/s?k=color+theory+design+book"],zh:["色彩设计书籍","给创作者的理论与实战。","https://www.amazon.com/s?k=color+theory+design+book"]},
+  {en:["Monitor Calibrators","Get colors right on every screen.","https://www.amazon.com/s?k=monitor+calibrator"],zh:["显示器校色仪","让每块屏幕颜色都准确。","https://www.amazon.com/s?k=monitor+calibrator"]},
+  {en:["Drawing Tablets","Sketch palettes and designs.","https://www.amazon.com/s?k=drawing+tablet"],zh:["手绘板","绘制配色与草图。","https://www.amazon.com/s?k=drawing+tablet"]},
+  {en:["Pantone Guides","Industry-standard color reference.","https://www.amazon.com/s?k=pantone+color+guide"],zh:["潘通色卡","行业标准色彩参考。","https://www.amazon.com/s?k=pantone+color+guide"]}
+];
+
+/* ===================== Helpers ===================== */
+function t(k){return (T[LANG]&&T[LANG][k]!==undefined)?T[LANG][k]:(T.en[k]!==undefined?T.en[k]:k);}
+function $(id){return document.getElementById(id);}
+function swatchEl(hex,label){const d=document.createElement("div");d.className="swatch";d.style.background=hex;d.setAttribute("data-copy",hex);const l=document.createElement("div");l.className="lab";l.textContent=label||hex;d.appendChild(l);return d;}
+function copy(text){
+  text=String(text).trim();
+  const done=()=>showToast(LANG==="zh"?"已复制":"Copied!");
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done));}
+  else fallbackCopy(text,done);
+}
+function fallbackCopy(text,cb){const ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(ta);cb&&cb();}
+let toastTimer;
+function showToast(msg){const el=$("toast");el.textContent=msg;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),1400);}
+
+/* ===================== Language / Theme ===================== */
+function applyI18n(){
+  document.documentElement.lang = LANG==="zh"?"zh":"en";
+  document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.getAttribute("data-i18n"));});
+  TOOLS.forEach(tl=>{const tb=$("tab-"+tl.id); if(tb) tb.textContent=`${tl.icon} ${t(tl.key)}`;});
+  $("langBtn").textContent = LANG==="zh"?"EN":"中文";
+  $("themeBtn").textContent = THEME==="dark"?"☀️":"🌙";
+  document.body.setAttribute("data-theme",THEME);
+  $("namedSearch").placeholder = t("named_placeholder");
+  // FAQ
+  const fl=$("faqList"); fl.innerHTML="";
+  t("faqs").forEach(([q,a])=>{const d=document.createElement("details");const s=document.createElement("summary");s.textContent=q;const p=document.createElement("p");p.textContent=a;d.appendChild(s);d.appendChild(p);fl.appendChild(d);});
+  // Affiliate
+  const ag=$("affGrid"); ag.innerHTML="";
+  AFF.forEach(it=>{const a=it[LANG];const c=document.createElement("div");c.className="aff-card";c.innerHTML=`<div class="t">${a[0]}</div><div class="d">${a[1]}</div><a href="${a[2]}&tag=velora-20" target="_blank" rel="sponsored nofollow noopener">${LANG==="zh"?"查看 ›":"Shop ›"}</a>`;ag.appendChild(c);});
+  $("affDiscl").textContent=t("affDiscl");
+  refreshAll();
+}
+function setLang(l){LANG=l;localStorage.setItem("velora_lang",l);const u=new URL(location.href);u.searchParams.set("lang",l);history.replaceState(null,"",u);applyI18n();}
+function toggleLang(){setLang(LANG==="zh"?"en":"zh");}
+function toggleTheme(){THEME=THEME==="dark"?"light":"dark";localStorage.setItem("velora_theme",THEME);applyI18n();}
+
+/* ===================== Tool: Converter ===================== */
+function paintConv(hex){
+  const rgb=hexToRgb(hex); if(!rgb) return;
+  const hsl=rgbToHsl(rgb.r,rgb.g,rgb.b), hsv=rgbToHsv(rgb.r,rgb.g,rgb.b);
+  $("convSwatch").style.background=hex;
+  $("convHexOut").textContent=hex;
+  $("convRgbOut").textContent=`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+  $("convHslOut").textContent=`hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+  $("convHsvOut").textContent=`hsv(${hsv.h}, ${hsv.s}%, ${hsv.v}%)`;
+}
+function convFromColor(){const hex=$("convColor").value;$("convHex").value=hex;paintConv(hex);}
+function convFromHex(){const hex=$("convHex").value.trim();const rgb=hexToRgb(hex);if(!rgb){return;}const h=rgbToHex(rgb.r,rgb.g,rgb.b);$("convColor").value=h;paintConv(h);}
+
+/* ===================== Tool: Contrast ===================== */
+function setColorInput(which,hex){if(which==="fg"){$("conFg").value=hex;}else{$("conBg").value=hex;}}
+function checkContrast(){
+  const fg=hexToRgb($("conFg").value), bg=hexToRgb($("conBg").value);
+  if(!fg||!bg) return;
+  $("conFgHex").value=rgbToHex(fg.r,fg.g,fg.b);
+  $("conBgHex").value=rgbToHex(bg.r,bg.g,bg.b);
+  const ratio=contrastRatio(fg,bg);
+  const aaN=ratio>=4.5, aaL=ratio>=3, aaaN=ratio>=7, aaaL=ratio>=4.5;
+  const b=(ok,label)=>`<span class="badge ${ok?"ok":"bad"}">${label}: ${ok?t("pass"):t("fail")}</span>`;
+  $("conBadges").innerHTML=b(aaN,t("aa_normal"))+b(aaL,t("aa_large"))+b(aaaN,t("aaa_normal"))+b(aaaL,t("aaa_large"));
+  const pr=$("conPreview"); pr.style.background=rgbToHex(bg.r,bg.g,bg.b); pr.style.color=rgbToHex(fg.r,fg.g,fg.b);
+  $("conRatioNote").textContent=`${t("ratio")}: ${ratio.toFixed(2)} : 1`;
+}
+function checkContrastHex(which){
+  const v=$(which==="fg"?"conFgHex":"conBgHex").value.trim();const rgb=hexToRgb(v);if(!rgb)return;
+  const hex=rgbToHex(rgb.r,rgb.g,rgb.b);
+  if(which==="fg")$("conFg").value=hex;else $("conBg").value=hex;
+  checkContrast();
+}
+
+/* ===================== Tool: Palette ===================== */
+function paintPalette(gridId,arr){const g=$(gridId);g.innerHTML="";arr.forEach(h=>g.appendChild(swatchEl(h)));}
+function genPalette(){
+  const hex=$("palBase").value; $("palBaseHex").value=hex;
+  const h=harmony(hex); if(!h) return;
+  paintPalette("palComp",[h.base,h.complementary]);
+  paintPalette("palAna",[h.analogous[0],h.base,h.analogous[1]]);
+  paintPalette("palTri",[h.base,h.triadic[0],h.triadic[1]]);
+  paintPalette("palTet",[h.base,h.tetradic[0],h.tetradic[1],h.tetradic[2]]);
+  paintPalette("palMono",h.monochromatic);
+}
+function genPaletteHex(){const v=$("palBaseHex").value.trim();const rgb=hexToRgb(v);if(!rgb)return;$("palBase").value=rgbToHex(rgb.r,rgb.g,rgb.b);genPalette();}
+
+/* ===================== Tool: Gradient ===================== */
+function genGradient(){
+  const c1=$("grad1").value, c2=$("grad2").value;
+  $("grad1Hex").value=c1; $("grad2Hex").value=c2;
+  $("gradAngleVal").textContent=$("gradAngle").value;
+  const type=$("gradType").value, ang=$("gradAngle").value;
+  const css = type==="radial"
+    ? `background: radial-gradient(circle, ${c1}, ${c2});`
+    : `background: linear-gradient(${ang}deg, ${c1}, ${c2});`;
+  $("gradPreview").style.cssText=`border-radius:14px;border:1px solid var(--border);margin-top:14px;height:120px;${css}`;
+  $("gradCode").textContent=css;
+}
+function genGradientHex(n){const v=$(n===1?"grad1Hex":"grad2Hex").value.trim();const rgb=hexToRgb(v);if(!rgb)return;$(n===1?"grad1":"grad2").value=rgbToHex(rgb.r,rgb.g,rgb.b);genGradient();}
+
+/* ===================== Tool: Shades ===================== */
+function genShades(){
+  const hex=$("shBase").value; $("shBaseHex").value=hex;
+  const rgb=hexToRgb(hex); if(!rgb) return;
+  const white={r:255,g:255,b:255}, black={r:0,g:0,b:0};
+  const tints=[],shades=[];
+  for(let i=1;i<=6;i++){tints.push(rgbToHex(...Object.values(mix(rgb,white,i/7)).map(Math.round)));}
+  for(let i=1;i<=6;i++){shades.push(rgbToHex(...Object.values(mix(rgb,black,i/7)).map(Math.round)));}
+  paintPalette("shTints",tints);
+  paintPalette("shShades",shades);
+}
+function genShadesHex(){const v=$("shBaseHex").value.trim();const rgb=hexToRgb(v);if(!rgb)return;$("shBase").value=rgbToHex(rgb.r,rgb.g,rgb.b);genShades();}
+
+/* ===================== Tool: Named ===================== */
+function renderNamed(){
+  const q=($("namedSearch").value||"").toLowerCase().trim();
+  const list=$("namedList"); list.innerHTML="";
+  NAMED.filter(([n])=>!q||n.includes(q)).forEach(([name,hex])=>{
+    const d=document.createElement("div");d.className="named";d.setAttribute("data-copy",hex);
+    d.innerHTML=`<span class="s" style="background:${hex}"></span><span class="t"><b>${name}</b><span>${hex}</span></span>`;
+    list.appendChild(d);
+  });
+}
+
+/* ===================== Tool: Image ===================== */
+function extractPalette(){
+  const f=$("imgFile").files[0]; if(!f) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const img=new Image();
+    img.onload=()=>{
+      const max=120, scale=Math.min(1,max/Math.max(img.width,img.height));
+      const w=Math.max(1,Math.round(img.width*scale)), h=Math.max(1,Math.round(img.height*scale));
+      const cv=document.createElement("canvas");cv.width=w;cv.height=h;
+      const ctx=cv.getContext("2d");ctx.drawImage(img,0,0,w,h);
+      const data=ctx.getImageData(0,0,w,h).data;
+      const buckets={};
+      for(let i=0;i<data.length;i+=4){
+        const r=data[i]&0xF0,g=data[i+1]&0xF0,b=data[i+2]&0xF0;
+        const key=(r<<16)|(g<<8)|b;
+        buckets[key]=(buckets[key]||0)+1;
+      }
+      const top=Object.entries(buckets).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([k])=>{
+        const r=(k>>16)&0xFF,g=(k>>8)&0xFF,b=k&0xFF;
+        return rgbToHex(Math.min(255,r+8),Math.min(255,g+8),Math.min(255,b+8));
+      });
+      const g=$("imgPalette");g.innerHTML="";top.forEach(hx=>g.appendChild(swatchEl(hx)));
+      const prev=$("imgPreview");prev.src=e.target.result;prev.style.display="block";
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(f);
+}
+
+/* ===================== Tool: Blind ===================== */
+function simBlind(){
+  const hex=$("blindBase").value; $("blindBaseHex").value=hex;
+  const type=$("blindType").value; const sim=blindness(hex,type);
+  $("blindOrig").style.background=hex; $("blindOrigLab").textContent=hex;
+  if(sim){$("blindSim").style.background=sim; $("blindSimLab").textContent=sim;}
+}
+function simBlindHex(){const v=$("blindBaseHex").value.trim();const rgb=hexToRgb(v);if(!rgb)return;$("blindBase").value=rgbToHex(rgb.r,rgb.g,rgb.b);simBlind();}
+
+/* ===================== Navigation ===================== */
+function buildToolbar(){
+  const tb=$("toolbar"); tb.innerHTML="";
+  TOOLS.forEach(tl=>{
+    const b=document.createElement("button");
+    b.className="tab"; b.textContent=`${tl.icon} ${t(tl.key)}`;
+    b.onclick=()=>showTool(tl.id); b.id="tab-"+tl.id;
+    tb.appendChild(b);
+  });
+}
+function showTool(id){
+  TOOLS.forEach(tl=>{
+    $(("tool-"+tl.id)).classList.toggle("hidden", tl.id!==id);
+    $("tab-"+tl.id).classList.toggle("active", tl.id===id);
+  });
+  const el=$("tool-"+id); if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+/* refresh results after language/theme change */
+function refreshAll(){
+  paintConv($("convColor").value);
+  checkContrast();
+  genPalette(); genGradient(); genShades(); renderNamed(); simBlind();
+}
+
+/* ===================== Init ===================== */
+buildToolbar();
+$("tab-converter").classList.add("active");
+applyI18n();
+// precompute
+convFromColor(); checkContrast(); genPalette(); genGradient(); genShades(); renderNamed(); simBlind();
+// deep-link
+const dl=(location.hash.match(/tool-(\w+)/)||[])[1];
+if(dl && TOOLS.find(x=>x.id===dl)) showTool(dl);
+document.addEventListener("click",e=>{const c=e.target.closest("[data-copy]");if(c){copy(c.getAttribute("data-copy"));}});
+</script>
+</body>
+</html>
